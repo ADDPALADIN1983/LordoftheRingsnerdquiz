@@ -17,7 +17,7 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/image_for_question"
+        android:id="@+id/small_image_for_question"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_below="@+id/question"
@@ -26,17 +26,31 @@
         android:background="@color/black"
         android:padding="1dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/placeholder" />
+        android:src="@drawable/placeholder"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/large_image_for_question"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_below="@+id/question"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/perimeter_margin"
+        android:background="@color/black"
+        android:padding="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder"
+        android:visibility="visible" />
 
     <RelativeLayout
-        android:id="@+id/answer_options_container"
+        android:id="@+id/radio_button_answers_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image_for_question"
+        android:layout_above="@+id/next_button"
+        android:layout_below="@+id/small_image_for_question"
         android:layout_marginLeft="@dimen/perimeter_margin"
         android:layout_marginRight="@dimen/perimeter_margin"
-        android:layout_above="@+id/next_button"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,38 +67,38 @@
                 <RadioButton
                     android:id="@+id/radio_1"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <RadioButton
                     android:id="@+id/radio_2"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <RadioButton
                     android:id="@+id/radio_3"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <RadioButton
                     android:id="@+id/radio_4"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <RadioButton
                     android:id="@+id/radio_5"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <RadioButton
                     android:id="@+id/radio_6"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="0dp" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
             </RadioGroup>
 
             <LinearLayout
@@ -127,6 +141,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="answer 5" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -140,6 +155,122 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/check_box_answers_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/next_button"
+        android:layout_below="@+id/small_image_for_question"
+        android:layout_marginLeft="@dimen/perimeter_margin"
+        android:layout_marginRight="@dimen/perimeter_margin"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:id="@+id/check_boxes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/check_box_1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/check_box_2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/check_box_3"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/check_box_4"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/check_box_5"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/check_box_6"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/check_boxes"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="answer 1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="answer 2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="answer 3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="answer 4" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="answer 5" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="answer 6" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/typed_in_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/next_button"
+        android:layout_below="@+id/large_image_for_question"
+        android:layout_marginLeft="@dimen/perimeter_margin"
+        android:layout_marginRight="@dimen/perimeter_margin"
+        android:gravity="center"
+        android:hint="Type answer here."
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/next_button"
