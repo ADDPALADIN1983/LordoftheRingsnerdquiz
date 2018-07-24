@@ -268,7 +268,7 @@
         android:layout_below="@+id/large_image_for_question"
         android:layout_marginLeft="@dimen/perimeter_margin"
         android:layout_marginRight="@dimen/perimeter_margin"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:hint="Type answer here."
         android:visibility="visible" />
 
@@ -280,4 +280,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/perimeter_margin"
         android:text="Next" />
+
 </RelativeLayout>
