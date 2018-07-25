@@ -49,7 +49,7 @@
 
     <!-- multiple choice question container Set to visible only for multiple choice questions-->
     <RelativeLayout
-        android:id="@+id/radio_button_answers_container"
+        android:id="@+id/clickable_answers_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_container"
@@ -65,10 +65,13 @@
             android:layout_marginRight="@dimen/perimeter_margin"
             android:orientation="horizontal">
 
+            <!--Radio button container-->
             <RadioGroup
+                android:id="@+id/radio_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <RadioButton
                     android:id="@+id/radio_1"
@@ -107,14 +110,62 @@
                     android:layout_weight="1" />
             </RadioGroup>
 
+            <!--checkbox container layout-->
             <LinearLayout
 
+                android:id="@+id/check_boxes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/check_box_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/check_box_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/check_box_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/check_box_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/check_box_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/check_box_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+            <!--Answers textView container-->
+            <LinearLayout
+                android:id="@+id/answer_text_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/radio_answer_one"
+                    android:id="@+id/answer_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -122,7 +173,7 @@
                     android:text="answer 1" />
 
                 <TextView
-                    android:id="@+id/radio_answer_two"
+                    android:id="@+id/answer_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -130,7 +181,7 @@
                     android:text="answer 2" />
 
                 <TextView
-                    android:id="@+id/radio_answer_three"
+                    android:id="@+id/answer_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -138,7 +189,7 @@
                     android:text="answer 3" />
 
                 <TextView
-                    android:id="@+id/radio_answer_four"
+                    android:id="@+id/answer_four"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -146,7 +197,7 @@
                     android:text="answer 4" />
 
                 <TextView
-                    android:id="@+id/radio_answer_five"
+                    android:id="@+id/answer_five"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -154,7 +205,7 @@
                     android:text="answer 5" />
 
                 <TextView
-                    android:id="@+id/radio_answer_six"
+                    android:id="@+id/answer_six"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -167,119 +218,6 @@
     </RelativeLayout>
 
     <!-- check box questions container. Set to visible only for check box style questions-->
-    <RelativeLayout
-        android:id="@+id/check_box_answers_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_container"
-        android:layout_below="@+id/small_image_for_question"
-        android:layout_marginLeft="@dimen/perimeter_margin"
-        android:layout_marginRight="@dimen/perimeter_margin"
-        android:visibility="gone">
-
-
-        <!--checkbox container layout-->
-        <LinearLayout
-            android:id="@+id/check_boxes"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <CheckBox
-                android:id="@+id/check_box_1"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:id="@+id/check_box_2"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:id="@+id/check_box_3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:id="@+id/check_box_4"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:id="@+id/check_box_5"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:id="@+id/check_box_6"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <!-- answer texts for checkboxes-->
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/check_boxes"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/check_box_1_answer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="answer 1" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/check_box_2_answer"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="answer 2" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/check_box_3_answer"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="answer 3" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/check_box_4_answer"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="answer 4" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/check_box_5_answer"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="answer 5" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/check_box_6_answer"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="answer 6" />
-        </LinearLayout>
-    </RelativeLayout>
-
     <!--edit text box for fill in the blank questions. Set to visible only for the fill in the blank questions-->
     <EditText
         android:id="@+id/typed_in_answer"

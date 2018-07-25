@@ -15,15 +15,15 @@ public class MainActivity extends AppCompatActivity {
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.LOTR_Sting);
     private Question question4 = new Question("What is the name of the weapon shown in this picture?", "Morgul Blade", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Morgul_Blade);
-    private Question question5 = new Question("What is the name of the weapon shown in this picture","Orcrist", "Glamdring",  "Orcrist",
-             "Sting",  "Anduril",  "Morgul Blade",  "Herugrim",  R.drawable.Orcrist);
+    private Question question5 = new Question("What is the name of the weapon shown in this picture", "Orcrist", "Glamdring", "Orcrist",
+            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Orcrist);
 
-    private Question question6 = new Question("Who fought wielding this weapon?", "Bilbo", "Bilbo",  "Aaragorn",
-            "Gandalf",  "Leglas",  "Thranduil",  "Frodo",  R.drawable.The_Hobbit_Sting);
-    private Question question7 = new Question("Who fought wielding this weapon?","","","", "Bilbo",  "Aragorn",
-            "Gandalf",  "Legolas",  "Thranduil",  "Thorin",  R.drawable.Orcrist);
-    private Question question8 = new Question("Who are descended from kings?", "Aragorn","Legolas","Thranduil","Bilbo",  "Aragorn",
-            "Gandalf",  "Legolas",  "Thranduil",  "Faramir",  R.drawable.throne);
+    private Question question6 = new Question("Who fought wielding this weapon?", "Bilbo", "Bilbo", "Aaragorn",
+            "Gandalf", "Leglas", "Thranduil", "Frodo", R.drawable.The_Hobbit_Sting);
+    private Question question7 = new Question("Who fought wielding this weapon?", "", "", "", "Bilbo", "Aragorn",
+            "Gandalf", "Legolas", "Thranduil", "Thorin", R.drawable.Orcrist);
+    private Question question8 = new Question("Who are descended from kings?", "Aragorn", "Legolas", "Thranduil", "Bilbo", "Aragorn",
+            "Gandalf", "Legolas", "Thranduil", "Faramir", R.drawable.throne);
 
     private Question question9 = new Question("What is the name of the battering ram from Return of the King?", "Grond", R.drawable.Grond);
     private Question question10 = new Question("What is the name of Gandalf's horse ", "Shadowfax", R.drawable.Shadowfax);
@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeAnswerOne(String message) {
-        TextView answerTextView = findViewById(R.id.radio_answer_one);
-        TextView checkBoxAnswer = findViewById(R.id.check_box_1);
+        TextView answerTextView = findViewById(R.id.answer_one);
         answerTextView.setText(message);
     }
 
