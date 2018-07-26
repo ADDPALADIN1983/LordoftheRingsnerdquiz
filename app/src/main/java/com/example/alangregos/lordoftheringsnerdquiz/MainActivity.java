@@ -3,7 +3,9 @@ package com.example.alangregos.lordoftheringsnerdquiz;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,16 +24,18 @@ public class MainActivity extends AppCompatActivity {
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Orcrist);
     private Question question6 = new Question(5, "multiple", "Who fought wielding this weapon?", "Bilbo", "Bilbo", "Aaragorn",
             "Gandalf", "Leglas", "Thranduil", "Frodo", R.drawable.The_Hobbit_Sting);
-    private Question question7 = new Question(6, "multiple", "Who fought wielding this weapon?", "", "", "", "Bilbo", "Aragorn",
+    private Question question7 = new Question(6, "multiple", "Who fought wielding this weapon?", "Legolas", "Thorin", null, "Bilbo", "Aragorn",
             "Gandalf", "Legolas", "Thranduil", "Thorin", R.drawable.Orcrist);
     private Question question8 = new Question(7, "multiple", "Who are descended from kings?", "Aragorn", "Legolas", "Thranduil", "Bilbo", "Aragorn",
             "Gandalf", "Legolas", "Thranduil", "Faramir", R.drawable.throne);
 
     private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.Grond);
     private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.Shadowfax);
+
+    private Question currentQuestion;
     private int currentQuestionIndex = 0;
     private int numberOfCorrectAnswer = 0;
-    private int totalNumberOfQuestions = 0;
+    private int totalNumberOfQuestions = 13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +50,31 @@ public class MainActivity extends AppCompatActivity {
 //method called when reset button is called to reset the quiz questiong to the first one in the index.
     public void resetQuiz(View view) {
         currentQuestionIndex = 0;
-        changeQuestion();
+        updateCurrentQuestion();
+        updateViews();
     }
 
-    private void isAnswerOneSelected(){
 
-    }
     //method called when next button is clicked to increment the current index and then populate the next question on the screen
     public void nextQuestion(View view) {
-        Question question = getCurrentQuestion();
-        String submitted= "placeholder";
-        numberOfCorrectAnswer += question.checkAnswer(submitted, question.getCorrectAnswerTextOne(), question.getCorrectAnswerTextTwo(), question.getCorrectAnswerTextThree());
+        String submitted = "placeholder";
+        if (currentQuestion.getQuestionStyle() != "text")
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(submitted, currentQuestion.getCorrectAnswerTextOne(), currentQuestion.getCorrectAnswerTextTwo(),
+                    currentQuestion.getCorrectAnswerTextThree());
+        else if (currentQuestion.getQuestionStyle() == "text") {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(submitted, currentQuestion.getCorrectAnswerTextOne());
+        } else
+            Toast.makeText(this, "There is a problem with the execution of this program", Toast.LENGTH_SHORT).show();
         currentQuestionIndex++;
-        changeQuestion();
+        if (currentQuestionIndex == 9) {
+            String toastText = "You got " + numberOfCorrectAnswer +"/" + totalNumberOfQuestions + "correct. That's " + numberOfCorrectAnswer/totalNumberOfQuestions + "%.";
+                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+        }
+        updateViews();
     }
 
     // method to pull the right question object from the list of questions
-    public Question getCurrentQuestion() {
+    public void updateCurrentQuestion() {
         Question question = null;
         if (currentQuestionIndex == 0) {
             question = question1;
@@ -94,15 +106,13 @@ public class MainActivity extends AppCompatActivity {
         if (currentQuestionIndex == 9) {
             question = question10;
         }
-        return question;
+        currentQuestion = question;
     }
 
     // method to update all of the UI elements and text for the current question
-    public void changeQuestion() {
-        Question question = getCurrentQuestion();
-        TextView questionTextView = findViewById(R.id.question);
-        questionTextView.setText(question.getQuestionText());
-        String type = question.getQuestionStyle();
+    public void updateViews() {
+
+        String type = currentQuestion.getQuestionStyle();
 
         // switch to add the view needed for the current question type and remove the UI elements that are not needed for that type of question
         switch (type) {
@@ -121,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 textAnswer.setVisibility(View.GONE);
                 break;
             }
+
             case "multiple": {
                 View smallImage = findViewById(R.id.small_image_for_question);
                 smallImage.setVisibility(View.VISIBLE);
@@ -136,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 textAnswer.setVisibility(View.GONE);
                 break;
             }
+
             case "text": {
                 View smallImage = findViewById(R.id.small_image_for_question);
                 smallImage.setVisibility(View.GONE);
@@ -151,6 +163,23 @@ public class MainActivity extends AppCompatActivity {
                 textAnswer.setVisibility(View.VISIBLE);
                 break;
             }
+
+        }
+        if (type != "text") {
+            // after the switch changes which views are visible the text boxes are populated with the answer options
+            changeAnswerOne(currentQuestion.getAnswer1());
+            changeAnswerTwo(currentQuestion.getAnswer2());
+            changeAnswerThree(currentQuestion.getAnswer3());
+            changeAnswerFour(currentQuestion.getAnswer4());
+            changeAnswerFive(currentQuestion.getAnswer5());
+            changeAnswerSix(currentQuestion.getAnswer6());
+        } else {
+            changeAnswerOne(null);
+            changeAnswerTwo(null);
+            changeAnswerThree(null);
+            changeAnswerFour(null);
+            changeAnswerFive(null);
+            changeAnswerSix(null);
         }
 
     }
@@ -159,5 +188,77 @@ public class MainActivity extends AppCompatActivity {
         TextView answerTextView = findViewById(R.id.answer_one);
         answerTextView.setText(message);
     }
+
+    public void changeAnswerTwo(String message) {
+        TextView answerTextView = findViewById(R.id.answer_two);
+        answerTextView.setText(message);
+    }
+
+    public void changeAnswerThree(String message) {
+        TextView answerTextView = findViewById(R.id.answer_three);
+        answerTextView.setText(message);
+    }
+
+    public void changeAnswerFour(String message) {
+        TextView answerTextView = findViewById(R.id.answer_four);
+        answerTextView.setText(message);
+    }
+
+    public void changeAnswerFive(String message) {
+        TextView answerTextView = findViewById(R.id.answer_five);
+        answerTextView.setText(message);
+    }
+
+    public void changeAnswerSix(String message) {
+        TextView answerTextView = findViewById(R.id.answer_six);
+        answerTextView.setText(message);
+    }
+
+    public void checkQuestionAnswers() {
+
+    }
+
+    private boolean isRadioOneSelected() {
+        boolean clicked;
+        RadioButton button = findViewById(R.id.radio_1);
+        clicked = button.isChecked();
+        return clicked;
+    }
+
+    private boolean isRadioTwoSelected() {
+        boolean clicked;
+        RadioButton button = findViewById(R.id.radio_2);
+        clicked = button.isChecked();
+        return clicked;
+    }
+
+    private boolean isRadioThreeSelected() {
+        boolean clicked;
+        RadioButton button = findViewById(R.id.radio_3);
+        clicked = button.isChecked();
+        return clicked;
+    }
+
+    private boolean isRadioFourSelected() {
+        boolean clicked;
+        RadioButton button = findViewById(R.id.radio_4);
+        clicked = button.isChecked();
+        return clicked;
+    }
+
+    private boolean isRadioFiveSelected() {
+        boolean clicked;
+        RadioButton button = findViewById(R.id.radio_5);
+        clicked = button.isChecked();
+        return clicked;
+    }
+
+    private boolean isRadioSixSelected() {
+        boolean clicked;
+        RadioButton button = findViewById(R.id.radio_6);
+        clicked = button.isChecked();
+        return clicked;
+    }
+
 
 }

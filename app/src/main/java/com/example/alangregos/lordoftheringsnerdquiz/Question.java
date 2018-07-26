@@ -126,5 +126,11 @@ public class Question {
         }
         return numberCorrect;
     }
-
+    public int checkAnswer(String submitted, String correct1) {
+        int numberCorrect = 0;
+        if (correct1.trim().equalsIgnoreCase(submitted.trim())) {
+            numberCorrect++;
+        }
+        return numberCorrect;
+    }
 }
