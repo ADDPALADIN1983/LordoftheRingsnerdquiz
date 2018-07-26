@@ -113,24 +113,18 @@ public class Question {
         return image;
     }
 
-    public int checkAnswer(String submitted, String correct1, String correct2, String correct3) {
+    public int checkAnswer(String submitted) {
         int numberCorrect = 0;
-        if (correct1 != null && correct1.trim().equalsIgnoreCase(submitted.trim())) {
+        if (correctAnswerTextOne != null && correctAnswerTextOne.trim().equalsIgnoreCase(submitted.trim())) {
             numberCorrect++;
         }
-        if (correct2 != null && correct2.trim().equalsIgnoreCase(submitted.trim())) {
+        if (correctAnswerTextTwo != null && correctAnswerTextTwo.trim().equalsIgnoreCase(submitted.trim())) {
             numberCorrect++;
         }
-        if (correct3 != null && correct3.trim().equalsIgnoreCase(submitted.trim())) {
+        if (correctAnswerTextThree != null && correctAnswerTextThree.trim().equalsIgnoreCase(submitted.trim())) {
             numberCorrect++;
         }
         return numberCorrect;
     }
-    public int checkAnswer(String submitted, String correct1) {
-        int numberCorrect = 0;
-        if (correct1 != null && correct1.trim().equalsIgnoreCase(submitted.trim())) {
-            numberCorrect++;
-        }
-        return numberCorrect;
-    }
+
 }

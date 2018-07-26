@@ -3,9 +3,12 @@ package com.example.alangregos.lordoftheringsnerdquiz;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -58,19 +61,21 @@ public class MainActivity extends AppCompatActivity {
 
     //method called when next button is clicked to increment the current index and then populate the next question on the screen
     public void nextQuestion(View view) {
-        String submitted = "placeholder";
+        String selectionOne = "placeholder";
         if (currentQuestion.getQuestionStyle() != "text")
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(submitted, currentQuestion.getCorrectAnswerTextOne(), currentQuestion.getCorrectAnswerTextTwo(),
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(selectionOne, currentQuestion.getCorrectAnswerTextOne(), currentQuestion.getCorrectAnswerTextTwo(),
                     currentQuestion.getCorrectAnswerTextThree());
         else if (currentQuestion.getQuestionStyle() == "text") {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(submitted, currentQuestion.getCorrectAnswerTextOne());
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(selectionOne, currentQuestion.getCorrectAnswerTextOne());
         } else
             Toast.makeText(this, "There is a problem with the execution of this program", Toast.LENGTH_SHORT).show();
-        currentQuestionIndex++;
+
+
         if (currentQuestionIndex == 9) {
-            String toastText = "You got " + numberOfCorrectAnswer +"/" + totalNumberOfQuestions + "correct. That's " + numberOfCorrectAnswer/totalNumberOfQuestions + "%.";
-                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+            String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + numberOfCorrectAnswer / totalNumberOfQuestions + "%.";
+            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
         }
+        currentQuestionIndex++;
         updateViews();
     }
 
@@ -130,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 checkBoxes.setVisibility(View.GONE);
                 View textAnswer = findViewById(R.id.typed_in_answer);
                 textAnswer.setVisibility(View.GONE);
+                setAnswerTexts(type);
                 break;
             }
 
@@ -146,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 checkBoxes.setVisibility(View.VISIBLE);
                 View textAnswer = findViewById(R.id.typed_in_answer);
                 textAnswer.setVisibility(View.GONE);
+                setAnswerTexts(type);
                 break;
             }
 
@@ -162,12 +169,18 @@ public class MainActivity extends AppCompatActivity {
                 checkBoxes.setVisibility(View.GONE);
                 View textAnswer = findViewById(R.id.typed_in_answer);
                 textAnswer.setVisibility(View.VISIBLE);
+                setAnswerTexts(type);
                 break;
             }
 
         }
+    }
+
+    // set's the answer options for the current question in the UI textViews
+    public void setAnswerTexts(String type) {
+
         if (type != "text") {
-            // after the switch changes which views are visible the text boxes are populated with the answer options
+
             changeAnswerOne(currentQuestion.getAnswer1());
             changeAnswerTwo(currentQuestion.getAnswer2());
             changeAnswerThree(currentQuestion.getAnswer3());
@@ -182,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
             changeAnswerFive(null);
             changeAnswerSix(null);
         }
-
     }
 
     public void changeAnswerOne(String message) {
@@ -215,7 +227,18 @@ public class MainActivity extends AppCompatActivity {
         answerTextView.setText(message);
     }
 
-    public void checkQuestionAnswers() {
+    public void checkBoxQuestionValidation() {
+
+    }
+
+    public void radioButtonQuestionValidation() {
+
+    }
+
+    public void answerValidation() {
+        EditText text = findViewById(R.id.typed_in_answer);
+        String answer = String.valueOf(text.getText());
+        numberOfCorrectAnswer = currentQuestion.checkAnswer(answer);
 
     }
 
