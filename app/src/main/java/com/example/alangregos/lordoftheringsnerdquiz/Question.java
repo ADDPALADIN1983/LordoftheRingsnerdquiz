@@ -2,19 +2,19 @@ package com.example.alangregos.lordoftheringsnerdquiz;
 
 public class Question {
 
-    int index;
-    String questionStyle;
-    String questionText;
-    String correctAnswerTextOne = "";
-    String correctAnswerTextTwo = "";
-    String correctAnswerTextThree = "";
-    String answer1;
-    String answer2;
-    String answer3;
-    String answer4;
-    String answer5;
-    String answer6;
-    int image;
+    private int index;
+    private String questionStyle;
+    private String questionText;
+    private String correctAnswerTextOne = "";
+    private String correctAnswerTextTwo = "";
+    private String correctAnswerTextThree = "";
+    private String answer1;
+    private String answer2;
+    private String answer3;
+    private String answer4;
+    private String answer5;
+    private String answer6;
+    private int image;
 
     //constructor for questions that only have 1 correct answer.
     public Question(int questionNumber, String questionType, String question, String correct, String text1, String text2, String text3, String text4,
@@ -60,6 +60,59 @@ public class Question {
         this.image = imageToDisplay;
     }
 
+
+    public int getIndex() {
+        return index;
+    }
+
+    public String getQuestionStyle() {
+        return questionStyle;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public String getCorrectAnswerTextOne() {
+        return correctAnswerTextOne;
+    }
+
+    public String getCorrectAnswerTextTwo() {
+        return correctAnswerTextTwo;
+    }
+
+    public String getCorrectAnswerTextThree() {
+        return correctAnswerTextThree;
+    }
+
+    public String getAnswer1() {
+        return answer1;
+    }
+
+    public String getAnswer2() {
+        return answer2;
+    }
+
+    public String getAnswer3() {
+        return answer3;
+    }
+
+    public String getAnswer4() {
+        return answer4;
+    }
+
+    public String getAnswer5() {
+        return answer5;
+    }
+
+    public String getAnswer6() {
+        return answer6;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
     public int checkAnswer(String submitted, String correct1, String correct2, String correct3) {
         int numberCorrect = 0;
         if (correct1.trim().equalsIgnoreCase(submitted.trim())) {
@@ -74,11 +127,4 @@ public class Question {
         return numberCorrect;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public String getQuestionStyle() {
-        return questionStyle;
-    }
 }

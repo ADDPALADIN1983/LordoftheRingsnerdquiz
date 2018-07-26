@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
+    // TODO: 7/26/2018 at some point convert the questions into an array of question objects
     private Question question1 = new Question(0, "radio", "What is the name of the weapon shown in this picture?", "Anduril", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Anduril);
     private Question question2 = new Question(1, "radio", "What is the name of the weapon shown in this picture?", "Glamdring", "Glamdring", "Orcrist",
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.Grond);
     private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.Shadowfax);
     private int currentQuestionIndex = 0;
-    private int numberOfCorrectAnswer;
-    private int totalNumberOfQuestions;
+    private int numberOfCorrectAnswer = 0;
+    private int totalNumberOfQuestions = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +40,71 @@ public class MainActivity extends AppCompatActivity {
     }
     // question answers need to be 40 chars or less
 
-
-    // TODO: 7/23/2018 build controller for what views are visible and what ones are hidden
     // TODO: 7/23/2018 script radio buttons and link to questions and answers
     // TODO: 7/23/2018 script check boxes and link to questions and answers
     // TODO: 7/23/2018script edit text and link to questions and answers
-
-    public void resetQuiz() {
-
+//method called when reset button is called to reset the quiz questiong to the first one in the index.
+    public void resetQuiz(View view) {
+        currentQuestionIndex = 0;
+        changeQuestion();
     }
 
-    public void changeQuestion() {
+    private void isAnswerOneSelected(){
 
-        Question question = question1;
+    }
+    //method called when next button is clicked to increment the current index and then populate the next question on the screen
+    public void nextQuestion(View view) {
+        Question question = getCurrentQuestion();
+        String submitted= "placeholder";
+        numberOfCorrectAnswer += question.checkAnswer(submitted, question.getCorrectAnswerTextOne(), question.getCorrectAnswerTextTwo(), question.getCorrectAnswerTextThree());
+        currentQuestionIndex++;
+        changeQuestion();
+    }
+
+    // method to pull the right question object from the list of questions
+    public Question getCurrentQuestion() {
+        Question question = null;
+        if (currentQuestionIndex == 0) {
+            question = question1;
+        }
+        if (currentQuestionIndex == 1) {
+            question = question2;
+        }
+        if (currentQuestionIndex == 2) {
+            question = question3;
+        }
+        if (currentQuestionIndex == 3) {
+            question = question4;
+        }
+        if (currentQuestionIndex == 4) {
+            question = question5;
+        }
+        if (currentQuestionIndex == 5) {
+            question = question6;
+        }
+        if (currentQuestionIndex == 6) {
+            question = question7;
+        }
+        if (currentQuestionIndex == 7) {
+            question = question8;
+        }
+        if (currentQuestionIndex == 8) {
+            question = question9;
+        }
+        if (currentQuestionIndex == 9) {
+            question = question10;
+        }
+        return question;
+    }
+
+    // method to update all of the UI elements and text for the current question
+    public void changeQuestion() {
+        Question question = getCurrentQuestion();
         TextView questionTextView = findViewById(R.id.question);
-        questionTextView.setText(question.questionText);
+        questionTextView.setText(question.getQuestionText());
         String type = question.getQuestionStyle();
+
+        // switch to add the view needed for the current question type and remove the UI elements that are not needed for that type of question
         switch (type) {
             case "radio": {
                 View smallImage = findViewById(R.id.small_image_for_question);
@@ -102,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+
     }
 
     public void changeAnswerOne(String message) {
