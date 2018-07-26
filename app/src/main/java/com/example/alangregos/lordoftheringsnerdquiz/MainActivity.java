@@ -3,12 +3,11 @@ package com.example.alangregos.lordoftheringsnerdquiz;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -61,15 +60,16 @@ public class MainActivity extends AppCompatActivity {
 
     //method called when next button is clicked to increment the current index and then populate the next question on the screen
     public void nextQuestion(View view) {
-        String selectionOne = "placeholder";
-        if (currentQuestion.getQuestionStyle() != "text")
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(selectionOne, currentQuestion.getCorrectAnswerTextOne(), currentQuestion.getCorrectAnswerTextTwo(),
-                    currentQuestion.getCorrectAnswerTextThree());
-        else if (currentQuestion.getQuestionStyle() == "text") {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(selectionOne, currentQuestion.getCorrectAnswerTextOne());
-        } else
-            Toast.makeText(this, "There is a problem with the execution of this program", Toast.LENGTH_SHORT).show();
 
+        if (currentQuestion.getQuestionStyle() == "radio") {
+            radioButtonQuestionValidation();
+        }
+        if (currentQuestion.getQuestionStyle() == "multiple") {
+            checkBoxQuestionValidation();
+        }
+        if (currentQuestion.getQuestionStyle() == "text") {
+            textQuestionValidation();
+        }
 
         if (currentQuestionIndex == 9) {
             String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + numberOfCorrectAnswer / totalNumberOfQuestions + "%.";
@@ -228,17 +228,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkBoxQuestionValidation() {
+        if (isCheckBoxOneSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer1());
+        }
+        if (isCheckBoxTwoSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer2());
+        }
 
+        if (isCheckBoxThreeSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer3());
+        }
+        if (isCheckBoxFourSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer4());
+        }
+        if (isCheckBoxFiveSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer5());
+        }
+        if (isCheckBoxSixSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer6());
+        }
     }
 
     public void radioButtonQuestionValidation() {
+        if (isRadioOneSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer1());
+        }
+        if (isRadioTwoSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer2());
+        }
 
+        if (isRadioThreeSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer3());
+        }
+        if (isRadioFourSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer4());
+        }
+        if (isRadioFiveSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer5());
+        }
+        if (isRadioSixSelected()) {
+            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer6());
+        }
     }
 
-    public void answerValidation() {
+    public void textQuestionValidation() {
         EditText text = findViewById(R.id.typed_in_answer);
         String answer = String.valueOf(text.getText());
-        numberOfCorrectAnswer = currentQuestion.checkAnswer(answer);
+        numberOfCorrectAnswer += currentQuestion.checkAnswer(answer);
 
     }
 
@@ -284,5 +320,45 @@ public class MainActivity extends AppCompatActivity {
         return clicked;
     }
 
+    private boolean isCheckBoxOneSelected() {
+        boolean clicked;
+        CheckBox box = findViewById(R.id.check_box_1);
+        clicked = box.isChecked();
+        return clicked;
+    }
 
+    private boolean isCheckBoxTwoSelected() {
+        boolean clicked;
+        CheckBox box = findViewById(R.id.check_box_2);
+        clicked = box.isChecked();
+        return clicked;
+    }
+
+    private boolean isCheckBoxThreeSelected() {
+        boolean clicked;
+        CheckBox box = findViewById(R.id.check_box_3);
+        clicked = box.isChecked();
+        return clicked;
+    }
+
+    private boolean isCheckBoxFourSelected() {
+        boolean clicked;
+        CheckBox box = findViewById(R.id.check_box_4);
+        clicked = box.isChecked();
+        return clicked;
+    }
+
+    private boolean isCheckBoxFiveSelected() {
+        boolean clicked;
+        CheckBox box = findViewById(R.id.check_box_5);
+        clicked = box.isChecked();
+        return clicked;
+    }
+
+    private boolean isCheckBoxSixSelected() {
+        boolean clicked;
+        CheckBox box = findViewById(R.id.check_box_6);
+        clicked = box.isChecked();
+        return clicked;
+    }
 }
