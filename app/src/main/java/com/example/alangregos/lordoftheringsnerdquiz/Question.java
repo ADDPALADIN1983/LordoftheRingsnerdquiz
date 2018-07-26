@@ -5,9 +5,9 @@ public class Question {
     private int index;
     private String questionStyle;
     private String questionText;
-    private String correctAnswerTextOne = "";
-    private String correctAnswerTextTwo = "";
-    private String correctAnswerTextThree = "";
+    private String correctAnswerTextOne = null;
+    private String correctAnswerTextTwo = null;
+    private String correctAnswerTextThree = null;
     private String answer1;
     private String answer2;
     private String answer3;
@@ -115,20 +115,20 @@ public class Question {
 
     public int checkAnswer(String submitted, String correct1, String correct2, String correct3) {
         int numberCorrect = 0;
-        if (correct1.trim().equalsIgnoreCase(submitted.trim())) {
+        if (correct1 != null && correct1.trim().equalsIgnoreCase(submitted.trim())) {
             numberCorrect++;
         }
-        if (correct2.trim().equalsIgnoreCase(submitted.trim())) {
+        if (correct2 != null && correct2.trim().equalsIgnoreCase(submitted.trim())) {
             numberCorrect++;
         }
-        if (correct3.trim().equalsIgnoreCase(submitted.trim())) {
+        if (correct3 != null && correct3.trim().equalsIgnoreCase(submitted.trim())) {
             numberCorrect++;
         }
         return numberCorrect;
     }
     public int checkAnswer(String submitted, String correct1) {
         int numberCorrect = 0;
-        if (correct1.trim().equalsIgnoreCase(submitted.trim())) {
+        if (correct1 != null && correct1.trim().equalsIgnoreCase(submitted.trim())) {
             numberCorrect++;
         }
         return numberCorrect;

@@ -13,24 +13,24 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO: 7/26/2018 at some point convert the questions into an array of question objects
     private Question question1 = new Question(0, "radio", "What is the name of the weapon shown in this picture?", "Anduril", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Anduril);
+            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.anduril);
     private Question question2 = new Question(1, "radio", "What is the name of the weapon shown in this picture?", "Glamdring", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Glamdring);
+            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.glamdring);
     private Question question3 = new Question(2, "radio", "What is the name of the weapon shown in this picture?", "Sting", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.LOTR_Sting);
+            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.lotr_sting);
     private Question question4 = new Question(3, "radio", "What is the name of the weapon shown in this picture?", "Morgul Blade", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Morgul_Blade);
+            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.morgul_blade);
     private Question question5 = new Question(4, "radio", "What is the name of the weapon shown in this picture", "Orcrist", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.Orcrist);
-    private Question question6 = new Question(5, "multiple", "Who fought wielding this weapon?", "Bilbo", "Bilbo", "Aaragorn",
-            "Gandalf", "Leglas", "Thranduil", "Frodo", R.drawable.The_Hobbit_Sting);
+            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.orcrist);
+    private Question question6 = new Question(5, "multiple", "Who fought wielding this weapon?", "Bilbo", "Bilbo", "Aragorn",
+            "Gandalf", "Leglas", "Thranduil", "Frodo", R.drawable.the_hobbit_sting);
     private Question question7 = new Question(6, "multiple", "Who fought wielding this weapon?", "Legolas", "Thorin", null, "Bilbo", "Aragorn",
-            "Gandalf", "Legolas", "Thranduil", "Thorin", R.drawable.Orcrist);
+            "Gandalf", "Legolas", "Thranduil", "Thorin", R.drawable.orcrist);
     private Question question8 = new Question(7, "multiple", "Who are descended from kings?", "Aragorn", "Legolas", "Thranduil", "Bilbo", "Aragorn",
             "Gandalf", "Legolas", "Thranduil", "Faramir", R.drawable.throne);
 
-    private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.Grond);
-    private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.Shadowfax);
+    private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.grond);
+    private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.shadowfax);
 
     private Question currentQuestion;
     private int currentQuestionIndex = 0;
@@ -46,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO: 7/23/2018 script radio buttons and link to questions and answers
     // TODO: 7/23/2018 script check boxes and link to questions and answers
-    // TODO: 7/23/2018script edit text and link to questions and answers
-//method called when reset button is called to reset the quiz questiong to the first one in the index.
+
+
+    //method called when reset button is called to reset the quiz questiong to the first one in the index.
     public void resetQuiz(View view) {
         currentQuestionIndex = 0;
         updateCurrentQuestion();
