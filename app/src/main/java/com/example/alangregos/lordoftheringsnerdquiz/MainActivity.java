@@ -22,20 +22,27 @@ public class MainActivity extends AppCompatActivity {
     // question answers need to be 40 chars or less
     private Question question1 = new Question(0, "radio", "What is the name of the weapon shown in this picture?", "Anduril", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.anduril);
+
     private Question question2 = new Question(1, "radio", "What is the name of the weapon shown in this picture?", "Glamdring", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.glamdring);
+
     private Question question3 = new Question(2, "radio", "What is the name of the weapon shown in this picture?", "Sting", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.lotr_sting);
+
     private Question question4 = new Question(3, "radio", "What is the name of the weapon shown in this picture?", "Morgul Blade", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.morgul_blade);
+
     private Question question5 = new Question(4, "radio", "What is the name of the weapon shown in this picture?", "Orcrist", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.orcrist);
-    private Question question6 = new Question(5, "multiple", "Who fought wielding this weapon?", "Bilbo", "Bilbo", "Aragorn",
-            "Gandalf", "Leglas", "Thranduil", "Frodo", R.drawable.the_hobbit_sting);
-    private Question question7 = new Question(6, "multiple", "Who fought wielding this weapon?", "Legolas", "Thorin", null, "Bilbo", "Aragorn",
-            "Gandalf", "Legolas", "Thranduil", "Thorin", R.drawable.orcrist);
-    private Question question8 = new Question(7, "multiple", "Who are descended from kings?", "Aragorn", "Legolas", "Thranduil", "Bilbo", "Aragorn",
-            "Gandalf", "Legolas", "Thranduil", "Faramir", R.drawable.throne);
+
+    private Question question6 = new Question(5, "multiple", "Who fought wielding this weapon?", "Bilbo", true, "Aragorn", false,
+            "Gandalf", false, "Leglas", false, "Thranduil", false, "Frodo", false, R.drawable.the_hobbit_sting);
+
+    private Question question7 = new Question(6, "multiple", "Who fought wielding this weapon?", "Bilbo", false, "Aragorn", false,
+            "Gandalf", false, "Legolas", true, "Thranduil", false, "Thorin", true, R.drawable.orcrist);
+
+    private Question question8 = new Question(7, "multiple", "Who are descended from kings?", "Bilbo", false, "Aragorn", true,
+            "Gandalf", false, "Legolas", true, "Thranduil", true, "Faramir", false, R.drawable.throne);
 
     private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.grond);
     private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.shadowfax);
@@ -43,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
     private Question currentQuestion = question1;
     private int currentQuestionIndex = 0;
     private int numberOfCorrectAnswer = 0;
-    private int totalNumberOfQuestions = 13;
+    private int totalNumberOfQuestions = 25;
 
-    // TODO: 7/26/2018 reset radio buttons and check boxes when it moves to the next question
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (currentQuestionIndex == 9) {
-            double percent = ((double)numberOfCorrectAnswer / (double)totalNumberOfQuestions)*100;
+            double percent = ((double) numberOfCorrectAnswer / (double) totalNumberOfQuestions) * 100;
             DecimalFormat decimalFormat = new DecimalFormat("###.##");
             String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + decimalFormat.format(percent) + "%.";
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
@@ -253,25 +260,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkBoxQuestionValidation() {
-        if (isCheckBoxOneSelected()) {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer1());
-        }
-        if (isCheckBoxTwoSelected()) {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer2());
-        }
 
-        if (isCheckBoxThreeSelected()) {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer3());
-        }
-        if (isCheckBoxFourSelected()) {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer4());
-        }
-        if (isCheckBoxFiveSelected()) {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer5());
-        }
-        if (isCheckBoxSixSelected()) {
-            numberOfCorrectAnswer += currentQuestion.checkAnswer(currentQuestion.getAnswer6());
-        }
+        numberOfCorrectAnswer += currentQuestion.checkAnswer(isCheckBoxOneSelected(), isCheckBoxTwoSelected(), isCheckBoxThreeSelected(), isCheckBoxFourSelected(),
+                isCheckBoxFiveSelected(), isCheckBoxSixSelected());
+
     }
 
     public void radioButtonQuestionValidation() {
