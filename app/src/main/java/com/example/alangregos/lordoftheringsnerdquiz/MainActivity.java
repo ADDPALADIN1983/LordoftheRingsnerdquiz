@@ -1,10 +1,12 @@
 package com.example.alangregos.lordoftheringsnerdquiz;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // TODO: 7/26/2018 at some point convert the questions into an array of question objects
+    // question answers need to be 40 chars or less
     private Question question1 = new Question(0, "radio", "What is the name of the weapon shown in this picture?", "Anduril", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.anduril);
     private Question question2 = new Question(1, "radio", "What is the name of the weapon shown in this picture?", "Glamdring", "Glamdring", "Orcrist",
@@ -34,20 +37,19 @@ public class MainActivity extends AppCompatActivity {
     private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.grond);
     private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.shadowfax);
 
-    private Question currentQuestion;
+    private Question currentQuestion= question1;
     private int currentQuestionIndex = 0;
     private int numberOfCorrectAnswer = 0;
     private int totalNumberOfQuestions = 13;
 
+    // TODO: 7/26/2018 reset radio buttons and check boxes when it moves to the next question 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-    // question answers need to be 40 chars or less
 
-    // TODO: 7/23/2018 script radio buttons and link to questions and answers
-    // TODO: 7/23/2018 script check boxes and link to questions and answers
+        setQuestionAndAnswerTexts(currentQuestion.getQuestionStyle());
+    }
 
 
     //method called when reset button is called to reset the quiz questiong to the first one in the index.
@@ -63,19 +65,23 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentQuestion.getQuestionStyle() == "radio") {
             radioButtonQuestionValidation();
+            currentQuestionIndex++;
         }
         if (currentQuestion.getQuestionStyle() == "multiple") {
             checkBoxQuestionValidation();
+            currentQuestionIndex++;
         }
         if (currentQuestion.getQuestionStyle() == "text") {
             textQuestionValidation();
+            currentQuestionIndex++;
         }
 
         if (currentQuestionIndex == 9) {
             String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + numberOfCorrectAnswer / totalNumberOfQuestions + "%.";
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
         }
-        currentQuestionIndex++;
+
+        updateCurrentQuestion();
         updateViews();
     }
 
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 checkBoxes.setVisibility(View.GONE);
                 View textAnswer = findViewById(R.id.typed_in_answer);
                 textAnswer.setVisibility(View.GONE);
-                setAnswerTexts(type);
+                setQuestionAndAnswerTexts(type);
                 break;
             }
 
@@ -152,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 checkBoxes.setVisibility(View.VISIBLE);
                 View textAnswer = findViewById(R.id.typed_in_answer);
                 textAnswer.setVisibility(View.GONE);
-                setAnswerTexts(type);
+                setQuestionAndAnswerTexts(type);
                 break;
             }
 
@@ -169,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 checkBoxes.setVisibility(View.GONE);
                 View textAnswer = findViewById(R.id.typed_in_answer);
                 textAnswer.setVisibility(View.VISIBLE);
-                setAnswerTexts(type);
+                setQuestionAndAnswerTexts(type);
                 break;
             }
 
@@ -177,7 +183,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // set's the answer options for the current question in the UI textViews
-    public void setAnswerTexts(String type) {
+    public void setQuestionAndAnswerTexts(String type) {
+
+        changeQuestionText(currentQuestion.getQuestionText());
 
         if (type != "text") {
 
@@ -187,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
             changeAnswerFour(currentQuestion.getAnswer4());
             changeAnswerFive(currentQuestion.getAnswer5());
             changeAnswerSix(currentQuestion.getAnswer6());
+            setSmallImage(currentQuestion.getImage());
         } else {
             changeAnswerOne(null);
             changeAnswerTwo(null);
@@ -194,7 +203,13 @@ public class MainActivity extends AppCompatActivity {
             changeAnswerFour(null);
             changeAnswerFive(null);
             changeAnswerSix(null);
+            setLargeImage(currentQuestion.getImage());
         }
+    }
+
+    public void changeQuestionText(String message) {
+        TextView questionTextView = findViewById(R.id.question);
+        questionTextView.setText(message);
     }
 
     public void changeAnswerOne(String message) {
@@ -360,5 +375,13 @@ public class MainActivity extends AppCompatActivity {
         CheckBox box = findViewById(R.id.check_box_6);
         clicked = box.isChecked();
         return clicked;
+    }
+    public void setSmallImage (int image){
+        ImageView imageView = findViewById(R.id.small_image_for_question);
+        imageView.setImageResource(image);
+    }
+    public void setLargeImage (int image){
+        ImageView imageView = findViewById(R.id.large_image_for_question);
+        imageView.setImageResource(image);
     }
 }

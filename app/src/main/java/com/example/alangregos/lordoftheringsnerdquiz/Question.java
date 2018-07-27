@@ -73,18 +73,6 @@ public class Question {
         return questionText;
     }
 
-    public String getCorrectAnswerTextOne() {
-        return correctAnswerTextOne;
-    }
-
-    public String getCorrectAnswerTextTwo() {
-        return correctAnswerTextTwo;
-    }
-
-    public String getCorrectAnswerTextThree() {
-        return correctAnswerTextThree;
-    }
-
     public String getAnswer1() {
         return answer1;
     }
