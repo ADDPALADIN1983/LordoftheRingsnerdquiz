@@ -12,6 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.lotr_sting);
     private Question question4 = new Question(3, "radio", "What is the name of the weapon shown in this picture?", "Morgul Blade", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.morgul_blade);
-    private Question question5 = new Question(4, "radio", "What is the name of the weapon shown in this picture", "Orcrist", "Glamdring", "Orcrist",
+    private Question question5 = new Question(4, "radio", "What is the name of the weapon shown in this picture?", "Orcrist", "Glamdring", "Orcrist",
             "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.orcrist);
     private Question question6 = new Question(5, "multiple", "Who fought wielding this weapon?", "Bilbo", "Bilbo", "Aragorn",
             "Gandalf", "Leglas", "Thranduil", "Frodo", R.drawable.the_hobbit_sting);
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     //method called when reset button is called to reset the quiz questiong to the first one in the index.
     public void resetQuiz(View view) {
         currentQuestionIndex = 0;
+        numberOfCorrectAnswer = 0;
         updateCurrentQuestion();
         updateViews();
     }
@@ -78,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (currentQuestionIndex == 9) {
-            String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + (numberOfCorrectAnswer / totalNumberOfQuestions) + "%.";
+            double percent = ((double)numberOfCorrectAnswer / (double)totalNumberOfQuestions)*100;
+            DecimalFormat decimalFormat = new DecimalFormat("###.##");
+            String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + decimalFormat.format(percent) + "%.";
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
         } else {
             currentQuestionIndex++;
