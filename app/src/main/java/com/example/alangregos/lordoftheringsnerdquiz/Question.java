@@ -5,7 +5,7 @@ public class Question {
     private int index;
     private String questionStyle;
     private String questionText;
-    private String correctAnswerTextOne = null;
+    private String correctAnswerTextOne;
     private String correctAnswerTextTwo = null;
     private String correctAnswerTextThree = null;
     private String answer1;

@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
     private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.grond);
     private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.shadowfax);
 
-    private Question currentQuestion= question1;
+    private Question currentQuestion = question1;
     private int currentQuestionIndex = 0;
     private int numberOfCorrectAnswer = 0;
     private int totalNumberOfQuestions = 13;
 
-    // TODO: 7/26/2018 reset radio buttons and check boxes when it moves to the next question 
+    // TODO: 7/26/2018 reset radio buttons and check boxes when it moves to the next question
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,22 +66,23 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentQuestion.getQuestionStyle() == "radio") {
             radioButtonQuestionValidation();
-            currentQuestionIndex++;
+
         }
         if (currentQuestion.getQuestionStyle() == "multiple") {
             checkBoxQuestionValidation();
-            currentQuestionIndex++;
+
         }
         if (currentQuestion.getQuestionStyle() == "text") {
             textQuestionValidation();
-            currentQuestionIndex++;
+
         }
 
         if (currentQuestionIndex == 9) {
-            String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + numberOfCorrectAnswer / totalNumberOfQuestions + "%.";
+            String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + (numberOfCorrectAnswer / totalNumberOfQuestions) + "%.";
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+        } else {
+            currentQuestionIndex++;
         }
-
         updateCurrentQuestion();
         updateViews();
     }
@@ -176,10 +178,13 @@ public class MainActivity extends AppCompatActivity {
                 View textAnswer = findViewById(R.id.typed_in_answer);
                 textAnswer.setVisibility(View.VISIBLE);
                 setQuestionAndAnswerTexts(type);
+                EditText text = findViewById(R.id.typed_in_answer);
+                text.setText(null);
                 break;
             }
 
         }
+        resetClickableListners();
     }
 
     // set's the answer options for the current question in the UI textViews
@@ -376,12 +381,31 @@ public class MainActivity extends AppCompatActivity {
         clicked = box.isChecked();
         return clicked;
     }
-    public void setSmallImage (int image){
+
+    public void setSmallImage(int image) {
         ImageView imageView = findViewById(R.id.small_image_for_question);
         imageView.setImageResource(image);
     }
-    public void setLargeImage (int image){
+
+    public void setLargeImage(int image) {
         ImageView imageView = findViewById(R.id.large_image_for_question);
         imageView.setImageResource(image);
+    }
+
+    public void resetClickableListners() {
+        RadioGroup group = findViewById(R.id.radio_buttons);
+        group.clearCheck();
+        CheckBox boxOne = findViewById(R.id.check_box_1);
+        boxOne.setChecked(false);
+        CheckBox boxTwo = findViewById(R.id.check_box_2);
+        boxTwo.setChecked(false);
+        CheckBox boxThree = findViewById(R.id.check_box_3);
+        boxThree.setChecked(false);
+        CheckBox boxFour = findViewById(R.id.check_box_4);
+        boxFour.setChecked(false);
+        CheckBox boxFive = findViewById(R.id.check_box_5);
+        boxFive.setChecked(false);
+        CheckBox boxSix = findViewById(R.id.check_box_6);
+        boxSix.setChecked(false);
     }
 }
