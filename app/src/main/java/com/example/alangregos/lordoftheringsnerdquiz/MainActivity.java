@@ -1,6 +1,6 @@
 package com.example.alangregos.lordoftheringsnerdquiz;
 
-import android.net.Uri;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,50 +17,73 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private Question question1;
+    private Question question2;
+    private Question question3;
+    private Question question4;
+    private Question question5;
+    private Question question6;
+    private Question question7;
+    private Question question8;
+    private Question question9;
+    private Question question10;
+    private Question currentQuestion;
     // TODO: 7/26/2018 at some point convert the questions into an array of question objects
     // question answers need to be 40 chars or less
-    private Question question1 = new Question(0, "radio", "What is the name of the weapon shown in this picture?", "Anduril", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.anduril);
-
-    private Question question2 = new Question(1, "radio", "What is the name of the weapon shown in this picture?", "Glamdring", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.glamdring);
-
-    private Question question3 = new Question(2, "radio", "What is the name of the weapon shown in this picture?", "Sting", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.lotr_sting);
-
-    private Question question4 = new Question(3, "radio", "What is the name of the weapon shown in this picture?", "Morgul Blade", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.morgul_blade);
-
-    private Question question5 = new Question(4, "radio", "What is the name of the weapon shown in this picture?", "Orcrist", "Glamdring", "Orcrist",
-            "Sting", "Anduril", "Morgul Blade", "Herugrim", R.drawable.orcrist);
-
-    private Question question6 = new Question(5, "multiple", "Who fought wielding this weapon?", "Bilbo", true, "Aragorn", false,
-            "Gandalf", false, "Leglas", false, "Thranduil", false, "Frodo", false, R.drawable.the_hobbit_sting);
-
-    private Question question7 = new Question(6, "multiple", "Who fought wielding this weapon?", "Bilbo", false, "Aragorn", false,
-            "Gandalf", false, "Legolas", true, "Thranduil", false, "Thorin", true, R.drawable.orcrist);
-
-    private Question question8 = new Question(7, "multiple", "Who are descended from kings?", "Bilbo", false, "Aragorn", true,
-            "Gandalf", false, "Legolas", true, "Thranduil", true, "Faramir", false, R.drawable.throne);
-
-    private Question question9 = new Question(8, "text", "What is the name of the battering ram from Return of the King?", "Grond", R.drawable.grond);
-    private Question question10 = new Question(9, "text", "What is the name of Gandalf's horse ", "Shadowfax", R.drawable.shadowfax);
-
-    private Question currentQuestion = question1;
     private int currentQuestionIndex = 0;
     private int numberOfCorrectAnswer = 0;
-    private int totalNumberOfQuestions = 25;
+    private final int totalNumberOfQuestions = 25;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setQuestionAndAnswerTexts(currentQuestion.getQuestionStyle());
+        //setQuestionAndAnswerTexts(currentQuestion.getQuestionStyle());
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        question1 = new Question(0, "radio", getString(R.string.name_of_this_weapon_question), getString(R.string.anduril_text),
+                getString(R.string.glamdring_text), getString(R.string.orcrist_text), getString(R.string.sting_text), getString(R.string.anduril_text),
+                getString(R.string.morgul_blade_text), getString(R.string.herugrim_text), R.drawable.anduril);
+
+        question2 = new Question(1, "radio", getString(R.string.name_of_this_weapon_question), getString(R.string.glamdring_text),
+                getString(R.string.glamdring_text), getString(R.string.orcrist_text), getString(R.string.sting_text), getString(R.string.anduril_text), getString(R.string.morgul_blade_text),
+                getString(R.string.herugrim_text), R.drawable.glamdring);
+
+        question3 = new Question(2, "radio", getString(R.string.name_of_this_weapon_question), getString(R.string.sting_text),
+                getString(R.string.glamdring_text), getString(R.string.orcrist_text), getString(R.string.sting_text), getString(R.string.anduril_text), getString(R.string.morgul_blade_text),
+                getString(R.string.herugrim_text), R.drawable.lotr_sting);
+
+        question4 = new Question(3, "radio", getString(R.string.name_of_this_weapon_question), getString(R.string.morgul_blade_text),
+                getString(R.string.glamdring_text), getString(R.string.orcrist_text), getString(R.string.sting_text), getString(R.string.anduril_text), getString(R.string.morgul_blade_text),
+                getString(R.string.herugrim_text), R.drawable.morgul_blade);
+
+        question5 = new Question(4, "radio", getString(R.string.name_of_this_weapon_question), getString(R.string.orcrist_text),
+                getString(R.string.glamdring_text), getString(R.string.orcrist_text), getString(R.string.sting_text), getString(R.string.anduril_text), getString(R.string.morgul_blade_text),
+                getString(R.string.herugrim_text), R.drawable.orcrist);
+
+        question6 = new Question(5, "multiple", getString(R.string.who_fought_wielding_question), getString(R.string.bilbo_text), true,
+                getString(R.string.aragorn_text), false, getString(R.string.gandalf_text), false, getString(R.string.legolas_text), false,
+                getString(R.string.thranduil_text), false, getString(R.string.frodo_text), false, R.drawable.the_hobbit_sting);
+
+        question7 = new Question(6, "multiple", getString(R.string.who_fought_wielding_question), getString(R.string.bilbo_text), false,
+                getString(R.string.aragorn_text), false, getString(R.string.gandalf_text), false, getString(R.string.legolas_text), true,
+                getString(R.string.thranduil_text), false, getString(R.string.thorin_text), true, R.drawable.orcrist);
+
+        question8 = new Question(7, "multiple", getString(R.string.decended_from_kings_question), getString(R.string.bilbo_text), false,
+                getString(R.string.aragorn_text), true, getString(R.string.gandalf_text), false, getString(R.string.legolas_text), true,
+                getString(R.string.thranduil_text), true, getString(R.string.faramir_text), false, R.drawable.throne);
+
+        question9 = new Question(8, "text", getString(R.string.name_of_battering_ram_lotr_question), getString(R.string.grond_text), R.drawable.grond);
+        question10 = new Question(9, "text", getString(R.string.gandalfs_horse_question), getString(R.string.shadowfax_text), R.drawable.shadowfax);
+
+        currentQuestion = question1;
+        setQuestionAndAnswerTexts(currentQuestion.getQuestionStyle());
+    }
 
     //method called when reset button is called to reset the quiz questiong to the first one in the index.
     public void resetQuiz(View view) {
@@ -90,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
         if (currentQuestionIndex == 9) {
             double percent = ((double) numberOfCorrectAnswer / (double) totalNumberOfQuestions) * 100;
             DecimalFormat decimalFormat = new DecimalFormat("###.##");
-            String toastText = "You got " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + "correct. That's " + decimalFormat.format(percent) + "%.";
+            String toastText = getString(R.string.scored) + " " + numberOfCorrectAnswer + "/" + totalNumberOfQuestions + getString(R.string.scored_part_two)
+                    + " " + decimalFormat.format(percent) + getString(R.string.percent_symbol_period);
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
         } else {
             currentQuestionIndex++;

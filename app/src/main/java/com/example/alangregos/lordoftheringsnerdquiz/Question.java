@@ -3,9 +3,10 @@ package com.example.alangregos.lordoftheringsnerdquiz;
 public class Question {
 
     private int index;
-    private String questionStyle; // must be either "radio", "multiple", or "text"
+    // must be either "radio", "multiple", or "text"
+    private String questionStyle;
     private String questionText;
-    private String correctAnswerTextOne = null;
+    private String correctAnswerTextOne = "";
     private String correctAnswerTextTwo = null;
     private String correctAnswerTextThree = null;
     private String answer1;
@@ -71,10 +72,6 @@ public class Question {
         this.image = imageToDisplay;
     }
 
-
-    public int getIndex() {
-        return index;
-    }
 
     public String getQuestionStyle() {
         return questionStyle;

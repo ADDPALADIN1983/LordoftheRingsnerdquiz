@@ -1,4 +1,34 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Lord of the Rings nerd quiz</string>
     <string name="forInstance">for instance</string>
+    <string name="reset_text">reset</string>
+    <string name="next_text">Next</string>
+    <string name="morgul_blade_text">Morgul Blade</string>
+    <string name="name_of_this_weapon_question">What is the name of the weapon shown in this picture?</string>
+    <string name="anduril_text">Anduril</string>
+    <string name="sting_text">Sting</string>
+    <string name="herugrim_text">Herugrim</string>
+    <string name="glamdring_text">Glamdring</string>
+    <string name="thranduil_text">Thranduil</string>
+    <string name="orcrist_text">Orcrist</string>
+    <string name="aragorn_text">Aragorn</string>
+    <string name="bilbo_text">Bilbo</string>
+    <string name="frodo_text">Frodo</string>
+    <string name="legolas_text">Legolas</string>
+    <string name="gandalf_text">Gandalf</string>
+    <string name="thorin_text">Thorin</string>
+    <string name="faramir_text">Faramir</string>
+    <string name="shadowfax_text">Shadowfax</string>
+    <string name="who_fought_wielding_question">Who fought wielding this weapon?</string>
+    <string name="gandalfs_horse_question">what is the name of Gandalf\'s horse</string>
+    <string name="name_of_battering_ram_lotr_question">Shadowfax</string>
+    <string name="grond_text">Grond</string>
+    <string name="decended_from_kings_question">Who is decended from kings</string>
+
+    <!-- string segments for concocting the "You scored #/# correct that's x%. -->
+    <string name="scored">You scored </string>
+    <string name="scored_part_two">correct. That\'s</string>
+    <string name="percent_symbol_period">\%\.</string>
 </resources>

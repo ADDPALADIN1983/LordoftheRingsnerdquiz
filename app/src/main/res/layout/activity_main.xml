@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.example.alangregos.lordoftheringsnerdquiz.MainActivity">
 
     <TextView
@@ -250,7 +249,7 @@
             android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:onClick="nextQuestion"
-            android:text="Next" />
+            android:text="@string/next_text" />
 
         <Button
             android:id="@+id/try_again"
@@ -262,7 +261,7 @@
             android:layout_toRightOf="@+id/button_container"
             android:layout_weight="1"
             android:onClick="resetQuiz"
-            android:text="reset" />
+            android:text="@string/reset_text" />
     </LinearLayout>
 
 </RelativeLayout>
